@@ -1,7 +1,9 @@
+import { Button } from "@material-tailwind/react";
+
 const App = () => {
   return (
     <div>
-      <h1>This is App component</h1>
+      <Button placeholder={""} color="blue-gray">Hello</Button>
     </div>
   );
 };
