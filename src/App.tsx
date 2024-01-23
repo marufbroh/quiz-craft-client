@@ -1,9 +1,13 @@
-import { Button } from "@material-tailwind/react";
+import { Toaster } from "react-hot-toast";
+import { NavbarDefault } from "./components/Navbar";
+import { TabsWithIcon } from "./components/Tabs";
 
 const App = () => {
   return (
-    <div>
-      <Button placeholder={""} color="blue-gray">Hello</Button>
+    <div className="container mx-auto">
+      <NavbarDefault />
+      <TabsWithIcon />
+      <Toaster />
     </div>
   );
 };
