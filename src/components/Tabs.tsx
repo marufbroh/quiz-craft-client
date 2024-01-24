@@ -17,7 +17,11 @@ export function TabsWithIcon() {
     {
       value: 0,
       name: "Select Module",
-      component: <SelectModule />,
+      component: (
+        <div className="flex justify-center">
+          <SelectModule />
+        </div>
+      ),
     },
     {
       value: 1,

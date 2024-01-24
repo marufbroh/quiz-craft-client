@@ -12,9 +12,9 @@ export function SelectModule() {
     return <Spinner />;
   }
 
-  console.log(modules);
+//   console.log(modules);
   return (
-    <div className="w-72 m-12">
+    <div className="w-72 m-20">
       <Select
         onChange={(value) => {
           const moduleTitle = modules.data.find(
