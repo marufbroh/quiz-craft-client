@@ -1,13 +1,14 @@
 import { Square3Stack3DIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import {
-  Tab,
-  TabPanel,
-  Tabs,
-  TabsBody,
-  TabsHeader,
+    Tab,
+    TabPanel,
+    Tabs,
+    TabsBody,
+    TabsHeader,
 } from "@material-tailwind/react";
 import React from "react";
 import { QuizCard } from "./QuizCard";
+import { DefaultStepper } from "./Stepper";
 
 export function TabsWithIcon() {
   const data = [
@@ -21,7 +22,7 @@ export function TabsWithIcon() {
       label: "Add Quiz",
       value: "add-quiz",
       icon: UserCircleIcon,
-      desc: <QuizCard>Hello Universe</QuizCard>,
+      desc: <DefaultStepper />,
     },
   ];
 
