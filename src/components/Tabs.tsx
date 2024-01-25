@@ -26,7 +26,9 @@ export function TabsWithIcon() {
     {
       value: 1,
       name: "Add Quiz",
-      component: <AddQuizForm />,
+      component: <div className="p-4">
+        <AddQuizForm />
+      </div>,
     },
   ];
 

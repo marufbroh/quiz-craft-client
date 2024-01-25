@@ -1,8 +1,42 @@
-import { Button, Card, Input, Typography } from "@material-tailwind/react";
-import { useAppSelector } from "../redux/hooks";
+import {
+    Button,
+    Card,
+    Input,
+    Option,
+    Select,
+    Typography,
+} from "@material-tailwind/react";
+import {
+    addQuiz,
+    setCorrectOption,
+    setDescription,
+    setOptions,
+    setQuestion
+} from "../redux/features/quiz/quizSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 export function AddQuizForm() {
-  const { moduleTitle } = useAppSelector((state) => state.module);
+  const { moduleTitle, moduleId } = useAppSelector((state) => state.module);
+  const dispatch = useAppDispatch();
+
+  const { question, description, options, correctOption } = useAppSelector(
+    (state) => state.quiz
+  );
+
+  const handleAddQuiz = (e) => {
+    e.preventDefault();
+    const myQuiz = {
+      module: moduleId,
+      question: question,
+      description: description,
+      options: options,
+      correctOption: correctOption,
+    };
+
+    dispatch(addQuiz(myQuiz));
+
+  };
+
   return (
     <Card placeholder={""} color="transparent" shadow={false}>
       <Typography placeholder={""} variant="h4" color="blue-gray">
@@ -23,6 +57,7 @@ export function AddQuizForm() {
               Question
             </Typography>
             <Input
+              onChange={(e) => dispatch(setQuestion(e.target.value))}
               size="lg"
               crossOrigin=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -41,6 +76,7 @@ export function AddQuizForm() {
               Description
             </Typography>
             <Input
+              onChange={(e) => dispatch(setDescription(e.target.value))}
               size="lg"
               crossOrigin=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -59,6 +95,7 @@ export function AddQuizForm() {
               Option 1
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               size="lg"
               crossOrigin=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -77,6 +114,7 @@ export function AddQuizForm() {
               Option 2
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               size="lg"
               crossOrigin=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -95,6 +133,7 @@ export function AddQuizForm() {
               Option 3
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               size="lg"
               crossOrigin=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -113,6 +152,7 @@ export function AddQuizForm() {
               Option 4
             </Typography>
             <Input
+              onBlur={(e) => dispatch(setOptions(e.target.value))}
               size="lg"
               crossOrigin=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -130,19 +170,28 @@ export function AddQuizForm() {
             >
               Correct Option
             </Typography>
-            <Input
+            {/* <Input
+              onBlur={(e) => dispatch(setCorrectOptions(e.target.value))}
               size="lg"
               crossOrigin=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
-            />
+            /> */}
+            <Select
+              placeholder={""}
+              onChange={(value) => dispatch(setCorrectOption(value))}
+            >
+              {options.map((option) => (
+                <Option value={option}>{option}</Option>
+              ))}
+            </Select>
           </div>
         </div>
 
         <div className="flex justify-end">
-          <Button placeholder={""} type="submit">
+          <Button onClick={handleAddQuiz} placeholder={""} type="submit">
             Add Quiz
           </Button>
         </div>

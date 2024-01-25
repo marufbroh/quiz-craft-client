@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Select, Option, Spinner } from "@material-tailwind/react";
 import { useAppDispatch } from "../redux/hooks";
 import { setActiveStep } from "../redux/features/stepper/stepperSlice";
@@ -12,13 +13,13 @@ export function SelectModule() {
     return <Spinner />;
   }
 
-//   console.log(modules);
+  //   console.log(modules);
   return (
     <div className="w-72 m-20">
       <Select
         onChange={(value) => {
           const moduleTitle = modules.data.find(
-            (module) => module._id === value
+            (module: any) => module._id === value
           ).title;
           dispatch(
             setSelectedModule({
@@ -36,8 +37,10 @@ export function SelectModule() {
         <Option>Material Tailwind Vue</Option>
         <Option>Material Tailwind Angular</Option>
         <Option>Material Tailwind Svelte</Option> */}
-        {modules?.data.map((module) => (
-          <Option key={module._id} value={module._id}>{module.title}</Option>
+        {modules?.data.map((module: any) => (
+          <Option key={module._id} value={module._id}>
+            {module.title}
+          </Option>
         ))}
       </Select>
     </div>
